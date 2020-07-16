@@ -1,4 +1,4 @@
-package boj;
+package acm;
 
 import java.util.*;
 import java.io.*;
