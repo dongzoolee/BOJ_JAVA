@@ -3,7 +3,7 @@ package acm;
 import java.util.*;
 import java.io.*;
 
-public class Main7568 {
+public class Main2822 {
 	static int col;
 	static String str;
 	static BufferedWriter bw;
@@ -28,31 +28,26 @@ public class Main7568 {
 		Scanner sc = new Scanner(System.in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		int tc = Integer.parseInt(st.nextToken());
-		for (int i = 0; i < tc; i++) {
-			StringTokenizer st1 = new StringTokenizer(br.readLine());
-			arr.add(Pair.of(Integer.parseInt(st1.nextToken()), Integer.parseInt(st1.nextToken())));
+		for (int i = 1; i <= 8; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			arr.add(Pair.of(Integer.parseInt(st.nextToken()), i));
 		}
-		/*Collections.sort(arr, new Comparator<Pair>() {
+		Collections.sort(arr, new Comparator<Pair>() {
 			@Override
 			public int compare(Pair a, Pair b) {
-				if (a.left == b.left)
-					return a.right < b.right ? -1 : 1;
-				else
-					return a.left < b.left ? -1 : 1;
+				return (a.left < b.left) ? -1 : 1;
 			}
-		});*/
-		for(int i = 0;i<tc;i++) {
-			int cnt = 0;
-			for(int f = 0;f<tc;f++) {
-				if(f!=i) {
-					if(arr.get(i).left<arr.get(f).left && arr.get(i).right < arr.get(f).right)
-						cnt++;
-				}
-			}
-			bw.write((cnt+1)+"\n");
+		});
+		ArrayList<Integer> tmp = new ArrayList<>();
+		int sum = 0;
+		for (int i = 3; i < 8; i++) {
+			sum+=arr.get(i).left;
+			tmp.add(arr.get(i).right);
 		}
+		System.out.println(sum);
+		Collections.sort(tmp);
+		for(int i = 0;i<tmp.size();i++)
+			bw.write(String.valueOf(tmp.get(i))+" ");
 		bw.flush();
 	}
 }

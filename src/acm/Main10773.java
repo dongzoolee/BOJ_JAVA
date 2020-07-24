@@ -23,7 +23,7 @@ public class Main10773 {
 	}
 
 	static ArrayList<Integer> arr = new ArrayList<>();
-
+	static Stack<Integer> stk=new Stack<>();
 	public static void main(String[] args) throws IOException {
 		Scanner sc = new Scanner(System.in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -32,11 +32,15 @@ public class Main10773 {
 		int n = Integer.parseInt(st.nextToken());
 		for(int i = 0;i<n;i++) {
 			StringTokenizer st1 = new StringTokenizer(br.readLine());
-			arr.add(Integer.parseInt(st1.nextToken()));
+			int a = Integer.parseInt(st1.nextToken());
+			if(a == 0) {
+				stk.pop();
+			}
+			else {
+				stk.add(a);
+			}
 		}
-		Collections.sort(arr);
-		for(int i = 0;i<n;i++)
-			bw.write(String.valueOf(arr.get(i))+'\n');
-		bw.flush();
+		int sum = stk.stream().mapToInt(Integer::intValue).sum();
+		System.out.println(sum);
 	}
 }
